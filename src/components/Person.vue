@@ -1,23 +1,32 @@
 <template>
     <div class="person">
-      <h2>{{ sum }}</h2>
-      <button @click="changeSum">点我+1</button>
+      <h2>姓名：{{ person.name }}</h2>
+      <h2>年龄：{{ person.age }}</h2>
+      <button @click="changeName">修改姓名</button>
+      <button @click="changeAge">修改年龄</button>
+      <button @click="changeWhole">修改全部</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person"> 
     import {ref,watch} from 'vue'
 
-    let sum = ref(0)
-    function changeSum(){
-        sum.value +=1
-    }
-    const stopWatch = watch(sum,(newValue,oldValue)=>{
-        console.log('sum变化了',newValue,oldValue)
-        if(newValue >= 10){
-            stopWatch()
-        }
+    let person = ref({
+        name: '张三',
+        age: 18
     })
+    function changeName(){
+        person.value.name += '~'
+    }
+    function changeAge(){
+        person.value.age += 1
+    }
+    function changeWhole(){
+        person.value ={name:'李四',age:99}
+    }
+    watch(person,(newVaule,oldValue)=>{
+        console.log('person变换了',newVaule,oldValue)
+    },{deep:true})
 </script>
 
 <style scoped>
