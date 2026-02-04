@@ -1,7 +1,7 @@
 <template>
     <div class="person">
-        <h2>姓名：{{person.name}}</h2>
-        <h2>年龄：{{person.age}}</h2>
+        <h2>姓名：{{name}}</h2>
+        <h2>年龄：{{age}}</h2>
         <button @click="changeName">修改姓名</button>
         <button @click="changeAge">修改年龄</button>
     </div>
@@ -10,7 +10,7 @@
 
 
 <script lang="ts" setup name="Person">
-    import {reactive} from 'vue'
+    import {reactive,toRefs} from 'vue'
 
     let person = reactive({
         name :'张三',
@@ -18,11 +18,13 @@
         tel :'48403489'
     })
 
+    let {name,age} = toRefs(person)
+
     function changeName(){
-        person.name += '~'
+        name.value += '~'
     }
     function changeAge(){
-        person.age += 1
+        age.value  += 1
     }
 </script>
 
