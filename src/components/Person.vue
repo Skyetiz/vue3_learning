@@ -9,24 +9,24 @@
 </template>
 
 <script lang="ts" setup name="Person"> 
-    import {ref,watch} from 'vue'
+    import {reactive,watch} from 'vue'
 
-    let person = ref({
+    let person = reactive({
         name: '张三',
         age: 18
     })
     function changeName(){
-        person.value.name += '~'
+        person.name += '~'
     }
     function changeAge(){
-        person.value.age += 1
+        person.age += 1
     }
     function changeWhole(){
-        person.value ={name:'李四',age:99}
+        Object.assign(person,{name:'李四',age:99})
     }
     watch(person,(newVaule,oldValue)=>{
         console.log('person变换了',newVaule,oldValue)
-    },{deep:true})
+    })
 </script>
 
 <style scoped>
