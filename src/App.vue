@@ -1,9 +1,6 @@
 <template>
     <!-- html -->
-     <div class="app">
-        <h1>你好啊！</h1>
-        <Person/>
-     </div>
+    <Person/>
 </template>
 
 <script lang="ts"> 
@@ -18,10 +15,5 @@
 
 <style> 
     /*样式*/
-    .app{
-        background: #ddd;
-        box-shadow: 0 0 10px;
-        border-radius: 10px;
-        padding: 20px;
-    }
+
 </style>
