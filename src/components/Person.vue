@@ -1,30 +1,34 @@
 <template>
     <div class="person">
-        <h2>姓名：{{name}}</h2>
-        <h2>年龄：{{age}}</h2>
-        <button @click="changeName">修改姓名</button>
-        <button @click="changeAge">修改年龄</button>
+        姓：<input type="text" v-model="firstname"> <br>
+        名：<input type="text" v-model="lastname"> <br>
+        <button @click="changeFullname">修改全名为lisi</button> <br>
+        全名：<span>{{ fullname }}</span> <br>
     </div>
 </template>
 
-
-
 <script lang="ts" setup name="Person">
-    import {reactive,toRefs} from 'vue'
+   import {ref,computed} from 'vue'
 
-    let person = reactive({
-        name :'张三',
-        age : 18,
-        tel :'48403489'
+   let firstname = ref('zhang')
+   let lastname = ref('san')
+
+//    let fullname = computed(()=>{
+//     return firstname.value.slice(0,1).toUpperCase() + firstname.value.slice(1) +'-'+lastname.value
+//    })
+    let fullname = computed({
+        get(){
+            return firstname.value.slice(0,1).toUpperCase() + firstname.value.slice(1) +'-'+lastname.value
+        },
+        set(val){
+            const [str1,str2] = val.split('-')
+            firstname.value = str1
+            lastname.value = str2
+        }
     })
 
-    let {name,age} = toRefs(person)
-
-    function changeName(){
-        name.value += '~'
-    }
-    function changeAge(){
-        age.value  += 1
+    function changeFullname(){
+        fullname.value = 'li-si'
     }
 </script>
 
