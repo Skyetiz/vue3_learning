@@ -1,35 +1,23 @@
 <template>
     <div class="person">
-        姓：<input type="text" v-model="firstname"> <br>
-        名：<input type="text" v-model="lastname"> <br>
-        <button @click="changeFullname">修改全名为lisi</button> <br>
-        全名：<span>{{ fullname }}</span> <br>
+      <h2>{{ sum }}</h2>
+      <button @click="changeSum">点我+1</button>
     </div>
 </template>
 
-<script lang="ts" setup name="Person">
-   import {ref,computed} from 'vue'
+<script lang="ts" setup name="Person"> 
+    import {ref,watch} from 'vue'
 
-   let firstname = ref('zhang')
-   let lastname = ref('san')
-
-//    let fullname = computed(()=>{
-//     return firstname.value.slice(0,1).toUpperCase() + firstname.value.slice(1) +'-'+lastname.value
-//    })
-    let fullname = computed({
-        get(){
-            return firstname.value.slice(0,1).toUpperCase() + firstname.value.slice(1) +'-'+lastname.value
-        },
-        set(val){
-            const [str1,str2] = val.split('-')
-            firstname.value = str1
-            lastname.value = str2
+    let sum = ref(0)
+    function changeSum(){
+        sum.value +=1
+    }
+    const stopWatch = watch(sum,(newValue,oldValue)=>{
+        console.log('sum变化了',newValue,oldValue)
+        if(newValue >= 10){
+            stopWatch()
         }
     })
-
-    function changeFullname(){
-        fullname.value = 'li-si'
-    }
 </script>
 
 <style scoped>
