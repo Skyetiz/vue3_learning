@@ -8,29 +8,25 @@
     </div>
 </template>
 
-<script lang="ts"> 
+<!-- <script lang="ts"> 
     export default{
-        name:'Person',
-        setup() {
-            // 数据
-            let name = '张三'
-            let age = 18
-            let tel = '1893457903'
+        name:'Person'
+    }
+</script> -->
 
-            // 方法
-            function changeName(){
-                console.log(name)
-                name = 'zhang-san'
-            }
-            function changeAge(){
-                age += 1
-            }
-            function showTel(){
-                alert(tel)
-            }
+<script lang="ts" setup name="Person234">
+    let name = '张三'
+    let age = 18
+    let tel = '1893457903'
 
-            return {name,age,changeName,changeAge,showTel}
-        }
+    function changeName(){
+        name = 'zhang-san'
+    }
+    function changeAge(){
+        age += 1
+    }
+    function showTel(){
+        alert(tel)
     }
 </script>
 
