@@ -38,18 +38,9 @@
         person.car = {c1:'cc',c2:'33'}
     }
 
-    watch(()=> person.name,(newValue,oldValue)=>{
-        console.log("name 改变!",newValue,oldValue)
+    watch(()=>[person.name,person.car],(newValue,oldValue)=>{
+        console.log("name,car改变！",newValue,oldValue)
     })
-
-    // watch(person.car,(newValue,oldValue)=>{
-    //     console.log("car改变了",newValue,oldValue)
-    // })
-
-    watch(()=>person.car,(newValue,oldValue)=>{
-        console.log("car改变了",newValue,oldValue)
-    },{deep:true})
-
 </script>
 
 <style scoped>
